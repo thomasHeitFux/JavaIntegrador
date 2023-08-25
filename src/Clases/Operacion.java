@@ -4,13 +4,17 @@ public abstract class Operacion {
     private double monto;
     private String fecha;
 
+    private String categoria;
+
     public Operacion() {
     }
 
-    public Operacion(double monto, String fecha) {
+    public Operacion(double monto, String fecha, String categoria) {
         this.monto = monto;
         this.fecha = fecha;
+        this.categoria = categoria;
     }
+
 
     public double getMonto() {
         return monto;
@@ -26,5 +30,13 @@ public abstract class Operacion {
 
     public void setFecha(String fecha) {
         this.fecha = fecha;
+    }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
     }
 }

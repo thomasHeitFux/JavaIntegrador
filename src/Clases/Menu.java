@@ -1,5 +1,9 @@
 package Clases;
 
+import Dao.OperationDao;
+import Dao.implementations.OperationImpDaoH2;
+import Entities.Operation;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -11,7 +15,7 @@ public class Menu {
         double saldoInicial = 0.0;
         double saldoActual = saldoInicial;
 
-        List<Gasto> listaGastos = new ArrayList<>();
+//        List<Gasto> listaGastos = new ArrayList<>();
         List<Ingreso> listaIngresos = new ArrayList<>();
 
         boolean salir = false;
@@ -28,56 +32,52 @@ public class Menu {
 
             switch (opcion) {
                 case 1 ->{
-                    double monto = pedirMonto(scanner);
+                    double amount = pedirMonto(scanner);
                     scanner.nextLine();
-                    String fecha = pedirFecha(scanner);
-                    String categoria = pedirCategoria(scanner);
+                    String date = pedirFecha(scanner);
+                    String category = pedirCategoria(scanner);
+                    String type = "EXPENSE";
 
-                    Gasto gasto1 = new Gasto(monto,fecha,categoria);
-                    saldoActual -= gasto1.getMonto();
-                    listaGastos.add(gasto1);
+                    OperationDao expensedao = new OperationImpDaoH2();
 
-                    System.out.println("El gasto es de : " + gasto1.getMonto() );
-                    System.out.println("La fecha es : " + gasto1.getFecha() );
-                    System.out.println("La categoria es : " + gasto1.getCategoria());
-
+                    Operation gasto1 = new Operation(amount,date,category,type);
+                    saldoActual -= gasto1.getAmount();
+                    expensedao.insert(gasto1);
+                    System.out.println("Agregado exitosamente!");
                 }
                 case 2 -> {
-                    double monto = pedirMonto(scanner);
+                    double amount = pedirMonto(scanner);
                     scanner.nextLine();
-                    String fecha = pedirFecha(scanner);
-                    String categoria = pedirCategoria(scanner);
+                    String date = pedirFecha(scanner);
+                    String category = pedirCategoria(scanner);
+                    String type = "INCOME";
 
-                    Ingreso ingreso1 = new Ingreso(monto,fecha,categoria);
-                    saldoActual += ingreso1.getMonto();
-                    listaIngresos.add(ingreso1);
+                    OperationDao expensedao = new OperationImpDaoH2();
 
-                    System.out.println("El ingreso es de : " + ingreso1.getMonto() );
-                    System.out.println("La fecha es : " + ingreso1.getFecha() );
-                    System.out.println("La categoria es : " + ingreso1.getCategoria());
+                    Operation gasto1 = new Operation(amount,date,category,type);
+                    saldoActual -= gasto1.getAmount();
+                    expensedao.insert(gasto1);
+                    System.out.println("Agregado exitosamente!");
 
                 }
                 case 3 -> {
+                    OperationImpDaoH2 dao = new OperationImpDaoH2();
+                    double balance = dao.getBalance();
+                    System.out.println("Balance actual: " + balance);
 
-                    System.out.println("saldo actual : " +saldoActual);
                 }
                 case 4 -> {
-                    System.out.println("Lista de gastos:");
-                    for (Gasto gasto : listaGastos) {
-                        System.out.println("Monto: " + gasto.getMonto());
-                        System.out.println("Fecha: " + gasto.getFecha());
-                        System.out.println("Categoria: " + gasto.getCategoria());
-                        System.out.println();
-                    }
+                    OperationImpDaoH2 dao = new OperationImpDaoH2();
+                    System.out.println("GASTOS:");
+                    dao.showExpenses();
+
+
                 }
                 case 5 -> {
-                    System.out.println("Lista de ingresos:");
-                    for (Ingreso ingreso : listaIngresos) {
-                        System.out.println("Monto: " + ingreso.getMonto());
-                        System.out.println("Fecha: " + ingreso.getFecha());
-                        System.out.println("Categoria: " + ingreso.getCategoria());
-                        System.out.println();
-                    }
+                    OperationImpDaoH2 dao = new OperationImpDaoH2();
+                    System.out.println("\nINGRESOS:");
+                    dao.showIncomes();
+
                 }
                 case 0 -> {
                     System.out.println("Saliendo del programa...");
@@ -93,17 +93,17 @@ public class Menu {
 
     }
     private static double pedirMonto(Scanner scanner) {
-        System.out.println("Ingresa monto:");
+        System.out.println("Ingrese monto:");
         return scanner.nextDouble();
     }
 
     private static String pedirFecha(Scanner scanner) {
-        System.out.println("Ingresa fecha:");
+        System.out.print("Ingrese la fecha (formato YYYY-MM-DD): ");
         return scanner.nextLine();
     }
 
     private static String pedirCategoria(Scanner scanner) {
-        System.out.println("Ingresa categoria:");
+        System.out.println("Ingrese categoria:");
         return scanner.nextLine();
     }
 }

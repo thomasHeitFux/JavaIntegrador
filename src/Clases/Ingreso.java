@@ -8,7 +8,7 @@ public class Ingreso extends Operacion{
     }
 
     public Ingreso(double monto, String fecha, String categoria) {
-        super(monto, fecha);
+        super(monto, fecha,categoria);
         this.categoria = categoria;
     }
 
