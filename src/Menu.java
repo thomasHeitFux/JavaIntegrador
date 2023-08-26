@@ -10,8 +10,8 @@ public class Menu {
     public static void menu(){
         Scanner scanner = new Scanner(System.in);
 
-        double saldoInicial = 0.0;
-        double saldoActual = saldoInicial;
+
+
 
 
 
@@ -38,7 +38,7 @@ public class Menu {
                     OperationDao expensedao = new OperationImpDaoH2();
 
                     Operation gasto1 = new Operation(amount,date,category,type);
-                    saldoActual -= gasto1.getAmount();
+
                     expensedao.insert(gasto1);
                     System.out.println("Agregado exitosamente!");
                 }
@@ -52,7 +52,7 @@ public class Menu {
                     OperationDao expensedao = new OperationImpDaoH2();
 
                     Operation gasto1 = new Operation(amount,date,category,type);
-                    saldoActual -= gasto1.getAmount();
+
                     expensedao.insert(gasto1);
                     System.out.println("Agregado exitosamente!");
 
