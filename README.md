@@ -44,13 +44,13 @@ The Expense Tracker App is a simple Java console application that allows users t
 1. Compile the application:
 
    ```bash
-   javac Menu.java
+   javac Main.java
    ```
 
 2. Run the application:
 
    ```bash
-   java Menu
+   java Main
    ```
 
 3. Follow the on-screen instructions to use the application. You can add expenses, incomes, view balance, and more.
@@ -67,4 +67,4 @@ This project is licensed under the [MIT License](LICENSE).
 
 ---
 
-_This Expense Tracker App is developed by [Your Name](https://github.com/your-username)._
+_This Expense Tracker App is developed by [Thomas Dominguez](https://github.com/thomasHeitFux)._
