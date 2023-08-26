@@ -1,5 +1,3 @@
-package Clases;
-
 import Dao.OperationDao;
 import Dao.implementations.OperationImpDaoH2;
 import Entities.Operation;
@@ -15,8 +13,7 @@ public class Menu {
         double saldoInicial = 0.0;
         double saldoActual = saldoInicial;
 
-//        List<Gasto> listaGastos = new ArrayList<>();
-        List<Ingreso> listaIngresos = new ArrayList<>();
+
 
         boolean salir = false;
         while (!salir) {
