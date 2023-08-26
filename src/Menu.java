@@ -2,8 +2,6 @@ import Dao.OperationDao;
 import Dao.implementations.OperationImpDaoH2;
 import Entities.Operation;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Menu {
