@@ -28,7 +28,7 @@ The Expense Tracker App is a simple Java console application that allows users t
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/expense-tracker-app.git
+   git clone https://github.com/thomasHeitFux/JavaIntegrador.git
    ```
 
    Or download the ZIP archive directly from the repository.
