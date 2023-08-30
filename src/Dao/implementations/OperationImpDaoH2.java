@@ -2,15 +2,12 @@ package Dao.implementations;
 
 import Dao.OperationDao;
 import Entities.Operation;
-import config.JdbcConfig;
 
 import java.sql.*;
 
 public class OperationImpDaoH2 implements OperationDao {
-    private final Connection connection;
-    public OperationImpDaoH2 (){
-        this.connection = JdbcConfig.getDBConnection();
-    }
+    private final Connection connection ;
+    public OperationImpDaoH2 (Connection connection){this.connection = connection;}
 
     @Override
     public void insert(Operation operation) {
@@ -29,7 +26,25 @@ public class OperationImpDaoH2 implements OperationDao {
 
     @Override
     public void read() {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT * FROM OPERATIONS "
+            );
+            ResultSet resultSet = preparedStatement.executeQuery();
 
+            while (resultSet.next()) {
+                double amount = resultSet.getDouble("amount");
+                String date = resultSet.getString("date");
+                String category = resultSet.getString("category");
+
+                System.out.println("REGISTROS - Fecha: " + date + " - Monto: " + amount + " - Categoría: " + category);
+            }
+
+            resultSet.close();
+            preparedStatement.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
