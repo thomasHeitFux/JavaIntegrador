@@ -133,7 +133,7 @@ try {
     private static String pedirCategoria(Scanner scanner) {
        while (true){
            try {
-               System.out.println("Ingrese categoria:");
+               System.out.println("Ingrese categoria :");
                return scanner.nextLine();
            }catch (InputMismatchException e){
                System.out.println("Error: Ingrese categoria valida");
